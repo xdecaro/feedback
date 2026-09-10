@@ -2,7 +2,7 @@
 <extension type="package" method="upgrade">
   <name>Feedback by xdecaro</name>
   <packagename>xdecarofeedback</packagename>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <creationDate>2026-09</creationDate>
   <author>Luca De Caro</author>
   <authorUrl>https://github.com/xdecaro/feedback</authorUrl>

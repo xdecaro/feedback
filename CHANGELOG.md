@@ -2,6 +2,21 @@
 
 All notable changes to Feedback by xdecaro will be documented here.
 
+## [0.2.0] - 2026-09-10
+
+### Added
+- Functional administrator Question library CRUD.
+- Search and filtering by type, state and category.
+- Joomla toolbar actions for create, edit, publish, unpublish, trash and delete.
+- Initial question types: stars, numeric scale, satisfaction scale, yes/no, single choice, multiple choice, short text, long text and NPS.
+- Friendly options editor using one option per line instead of exposing JSON.
+- Server-side normalization and validation of option lists and numeric-scale settings.
+- Responsive narrow-layout question records and dark-mode-safe local styling.
+
+### Changed
+- Dashboard now links to the Question library.
+- Administrator manifest exposes the Question library submenu.
+
 ## [0.1.0] - 2026-09-10
 
 ### Added

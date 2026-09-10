@@ -1,0 +1,2 @@
+-- Feedback by xdecaro 0.2.0 schema marker.
+-- Question Library 0.2.0 uses the existing 0.1.0 questions schema without destructive changes.
