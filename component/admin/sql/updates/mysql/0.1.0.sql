@@ -1,0 +1,2 @@
+-- Feedback by xdecaro 0.1.0 schema marker.
+-- Initial tables are created by install.mysql.utf8mb4.sql on clean installation.

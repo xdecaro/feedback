@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<access component="com_xdecarofeedback">
+  <section name="component">
+    <action name="core.manage" title="JACTION_MANAGE" />
+    <action name="core.create" title="JACTION_CREATE" />
+    <action name="core.edit" title="JACTION_EDIT" />
+    <action name="core.edit.state" title="JACTION_EDITSTATE" />
+    <action name="core.delete" title="JACTION_DELETE" />
+    <action name="feedback.responses.view" title="COM_XDECAROFEEDBACK_ACTION_RESPONSES_VIEW" />
+    <action name="feedback.responses.export" title="COM_XDECAROFEEDBACK_ACTION_RESPONSES_EXPORT" />
+    <action name="feedback.reports.view" title="COM_XDECAROFEEDBACK_ACTION_REPORTS_VIEW" />
+  </section>
+</access>

@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - name: Smoke checks
+        run: php tests/smoke.php
+      - name: Build deterministic packages
+        run: bash build/build.sh
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: feedback-${{ github.sha }}
+          path: dist/

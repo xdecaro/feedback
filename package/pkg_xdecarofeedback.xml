@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade">
+  <name>Feedback by xdecaro</name>
+  <packagename>xdecarofeedback</packagename>
+  <version>0.1.0</version>
+  <creationDate>2026-09</creationDate>
+  <author>Luca De Caro</author>
+  <authorUrl>https://github.com/xdecaro/feedback</authorUrl>
+  <license>GNU General Public License version 2 or later</license>
+  <description>Feedback by xdecaro Joomla development package.</description>
+  <targetplatform name="joomla" version="(4|5|6).*"/>
+  <scriptfile>script.php</scriptfile>
+  <files>
+    <file type="component" id="com_xdecarofeedback">com_xdecarofeedback.zip</file>
+  </files>
+</extension>
