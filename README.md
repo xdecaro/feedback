@@ -6,7 +6,7 @@
 - Package: `pkg_xdecarofeedback`
 - Namespace: `xdecaro\Component\Feedback`
 - Tables: `#__xdecarofeedback_*`
-- Development version: `0.1.0`
+- Development version: `0.2.0`
 - Repository: `xdecaro/feedback`
 
 ## Product scope
@@ -16,6 +16,12 @@ Feedback owns questionnaires, reusable templates, a reusable question library, q
 Feedback deliberately does **not** implement a full Forms-style builder. The authoring experience is based on templates, reusable questions, a simple editor and lightweight drag-and-drop ordering. Forms remains the general-purpose form builder.
 
 Feedback may be linked to Courses, Events, Competitions, Membership, Bookings or future products, but those integrations must remain optional. Cross-product references use Core contracts such as `EntityReference` and capabilities/events; Feedback must never read or write another product's private tables.
+
+## Current development milestone
+
+`0.2.0` adds the first functional administrator workflow: the **Question library**. Administrators can create, edit, search, filter, publish/unpublish, trash and delete reusable questions with server-side normalization of question options/settings.
+
+Supported initial question types are stars, numeric scale, satisfaction scale, yes/no, single choice, multiple choice, short text, long text and NPS.
 
 ## Planned administrator areas
 
@@ -32,4 +38,4 @@ Feedback may be linked to Courses, Events, Competitions, Membership, Bookings or
 
 Target Joomla 4, 5 and 6 where technically possible, using modern Joomla APIs, server-side ACL, CSRF protection, validated input, escaped output, bound database queries, Web Asset Manager, multilingual language files, responsive layouts and dark-mode-safe shared UI.
 
-The first development milestone is `0.1.0`; it establishes the package/component foundation and domain contracts without advertising a stable public release.
+The `0.x` series is development-only; it does not advertise a stable public release.

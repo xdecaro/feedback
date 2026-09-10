@@ -5,7 +5,7 @@
   <creationDate>2026-09</creationDate>
   <license>GNU General Public License version 2 or later</license>
   <authorUrl>https://github.com/xdecaro/feedback</authorUrl>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <description>COM_XDECAROFEEDBACK_XML_DESCRIPTION</description>
   <namespace path="src">xdecaro\Component\Feedback</namespace>
   <targetplatform name="joomla" version="(4|5|6).*"/>
@@ -13,11 +13,13 @@
     <menu view="dashboard">COM_XDECAROFEEDBACK</menu>
     <submenu>
       <menu view="dashboard">COM_XDECAROFEEDBACK_DASHBOARD</menu>
+      <menu view="questions">COM_XDECAROFEEDBACK_QUESTION_LIBRARY</menu>
       <menu view="information">COM_XDECAROFEEDBACK_INFORMATION</menu>
     </submenu>
     <files folder="admin">
       <filename>access.xml</filename>
       <filename>config.xml</filename>
+      <folder>forms</folder>
       <folder>language</folder>
       <folder>services</folder>
       <folder>sql</folder>

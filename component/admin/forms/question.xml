@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="question" label="COM_XDECAROFEEDBACK_FIELDSET_QUESTION">
+    <field name="id" type="hidden" />
+    <field name="title" type="text" label="COM_XDECAROFEEDBACK_FIELD_TITLE" required="true" maxlength="255" />
+    <field name="prompt" type="textarea" label="COM_XDECAROFEEDBACK_FIELD_PROMPT" required="true" rows="4" filter="raw" />
+    <field name="question_type" type="list" label="COM_XDECAROFEEDBACK_FIELD_QUESTION_TYPE" required="true" default="stars">
+      <option value="stars">COM_XDECAROFEEDBACK_TYPE_STARS</option>
+      <option value="scale">COM_XDECAROFEEDBACK_TYPE_SCALE</option>
+      <option value="satisfaction">COM_XDECAROFEEDBACK_TYPE_SATISFACTION</option>
+      <option value="yesno">COM_XDECAROFEEDBACK_TYPE_YESNO</option>
+      <option value="single_choice">COM_XDECAROFEEDBACK_TYPE_SINGLE_CHOICE</option>
+      <option value="multiple_choice">COM_XDECAROFEEDBACK_TYPE_MULTIPLE_CHOICE</option>
+      <option value="short_text">COM_XDECAROFEEDBACK_TYPE_SHORT_TEXT</option>
+      <option value="long_text">COM_XDECAROFEEDBACK_TYPE_LONG_TEXT</option>
+      <option value="nps">COM_XDECAROFEEDBACK_TYPE_NPS</option>
+    </field>
+    <field name="category" type="text" label="COM_XDECAROFEEDBACK_FIELD_CATEGORY" maxlength="100" />
+    <field name="options_text" type="textarea" label="COM_XDECAROFEEDBACK_FIELD_OPTIONS" description="COM_XDECAROFEEDBACK_FIELD_OPTIONS_DESC" rows="7" filter="raw" showon="question_type:single_choice,multiple_choice" />
+  </fieldset>
+  <fieldset name="scale" label="COM_XDECAROFEEDBACK_FIELDSET_SCALE">
+    <field name="min_value" type="number" label="COM_XDECAROFEEDBACK_FIELD_MIN_VALUE" default="1" min="-100" max="100" showon="question_type:scale" />
+    <field name="max_value" type="number" label="COM_XDECAROFEEDBACK_FIELD_MAX_VALUE" default="5" min="-99" max="100" showon="question_type:stars,scale" />
+    <field name="min_label" type="text" label="COM_XDECAROFEEDBACK_FIELD_MIN_LABEL" maxlength="120" showon="question_type:scale,satisfaction" />
+    <field name="max_label" type="text" label="COM_XDECAROFEEDBACK_FIELD_MAX_LABEL" maxlength="120" showon="question_type:scale,satisfaction" />
+    <field name="required_default" type="radio" layout="joomla.form.field.radio.switcher" label="COM_XDECAROFEEDBACK_FIELD_REQUIRED_DEFAULT" default="0">
+      <option value="1">JYES</option>
+      <option value="0">JNO</option>
+    </field>
+  </fieldset>
+  <fieldset name="publishing" label="JGLOBAL_FIELDSET_PUBLISHING">
+    <field name="state" type="list" label="JSTATUS" default="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+    </field>
+    <field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL" default="*">
+      <option value="*">JALL</option>
+    </field>
+  </fieldset>
+</form>
