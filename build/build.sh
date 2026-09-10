@@ -15,5 +15,13 @@ cp "$ROOT/package/script.php" "$WORK/package/script.php"
 cp "$DIST/com_xdecarofeedback_${VERSION}.zip" "$WORK/package/com_xdecarofeedback.zip"
 find "$WORK/package" -type f -exec touch -t 198001010000 {} +
 (cd "$WORK/package" && find . -type f -print0 | sort -z | xargs -0 zip -X -q "$DIST/pkg_xdecarofeedback_${VERSION}.zip")
-(cd "$DIST" && sha256sum "com_xdecarofeedback_${VERSION}.zip" "pkg_xdecarofeedback_${VERSION}.zip" > SHA256SUMS.txt)
+cd "$DIST"
+if command -v sha256sum >/dev/null 2>&1; then
+  sha256sum "com_xdecarofeedback_${VERSION}.zip" "pkg_xdecarofeedback_${VERSION}.zip" > SHA256SUMS.txt
+elif command -v shasum >/dev/null 2>&1; then
+  shasum -a 256 "com_xdecarofeedback_${VERSION}.zip" "pkg_xdecarofeedback_${VERSION}.zip" > SHA256SUMS.txt
+else
+  echo 'No SHA-256 utility found.' >&2
+  exit 1
+fi
 printf 'Built Feedback %s\n' "$VERSION"
