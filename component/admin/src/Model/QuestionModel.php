@@ -3,6 +3,7 @@ namespace xdecaro\Component\Feedback\Administrator\Model;
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 final class QuestionModel extends AdminModel
@@ -14,7 +15,7 @@ final class QuestionModel extends AdminModel
     {
         return parent::getTable($type, $prefix, $config);
     }
-    public function getForm($data = [], $loadData = true): Form|false
+    public function getForm($data = [], $loadData = true)
     {
         return $this->loadForm('com_xdecarofeedback.question', 'question', ['control' => 'jform', 'load_data' => $loadData]);
     }
@@ -40,20 +41,28 @@ final class QuestionModel extends AdminModel
     }
     public function save($data): bool
     {
-        $data['title'] = trim((string) ($data['title'] ?? ''));
-        $data['prompt'] = trim((string) ($data['prompt'] ?? ''));
+        $data['title'] = trim(strip_tags((string) ($data['title'] ?? '')));
+        $data['prompt'] = trim(strip_tags((string) ($data['prompt'] ?? '')));
         $data['question_type'] = trim((string) ($data['question_type'] ?? ''));
-        $data['category'] = trim((string) ($data['category'] ?? ''));
-        if ($data['title'] === '' || $data['prompt'] === '') {
-            $this->setError('Question title and prompt are required.');
+        $data['category'] = trim(strip_tags((string) ($data['category'] ?? '')));
+        if ($data['title'] === '') {
+            $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_TITLE_REQUIRED'));
+            return false;
+        }
+        if ($data['prompt'] === '') {
+            $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_PROMPT_REQUIRED'));
+            return false;
+        }
+        if (mb_strlen($data['title']) > 255) {
+            $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_TITLE_TOO_LONG'));
             return false;
         }
         if (!in_array($data['question_type'], self::TYPES, true)) {
-            $this->setError('Unsupported question type.');
+            $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_TYPE_INVALID'));
             return false;
         }
-        if (strlen($data['category']) > 100) {
-            $this->setError('Question category is too long.');
+        if (mb_strlen($data['category']) > 100) {
+            $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_CATEGORY_TOO_LONG'));
             return false;
         }
         $options = [];
@@ -65,7 +74,7 @@ final class QuestionModel extends AdminModel
                     continue;
                 }
                 if (mb_strlen($line) > 255) {
-                    $this->setError('Each choice option must be 255 characters or fewer.');
+                    $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_OPTION_TOO_LONG'));
                     return false;
                 }
                 if (!in_array($line, $options, true)) {
@@ -73,11 +82,11 @@ final class QuestionModel extends AdminModel
                 }
             }
             if (count($options) < 2) {
-                $this->setError('Choice questions require at least two different options.');
+                $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_OPTIONS_MIN'));
                 return false;
             }
             if (count($options) > 50) {
-                $this->setError('Choice questions support at most 50 options.');
+                $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_OPTIONS_MAX'));
                 return false;
             }
         }
@@ -86,7 +95,7 @@ final class QuestionModel extends AdminModel
             case 'stars':
                 $max = (int) ($data['max_value'] ?? 5);
                 if ($max < 3 || $max > 10) {
-                    $this->setError('Star rating maximum must be between 3 and 10.');
+                    $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_STARS_RANGE'));
                     return false;
                 }
                 $settings['min'] = 1;
@@ -96,7 +105,7 @@ final class QuestionModel extends AdminModel
                 $min = (int) ($data['min_value'] ?? 1);
                 $max = (int) ($data['max_value'] ?? 5);
                 if ($min < -100 || $max > 100 || $min >= $max) {
-                    $this->setError('Numeric scale requires a minimum lower than the maximum, within -100 and 100.');
+                    $this->setError(Text::_('COM_XDECAROFEEDBACK_ERROR_SCALE_RANGE'));
                     return false;
                 }
                 $settings['min'] = $min;
